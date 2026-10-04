@@ -1,0 +1,83 @@
+{
+  "fecha": "2026-10-01T23:47:29.349Z",
+  "entorno": {
+    "sistema": "Windows_NT 10.0.26200",
+    "cpu": "Intel(R) Core(TM) i5-1035G1 CPU @ 1.00GHz",
+    "nucleos": 8,
+    "memoria_gb": 8,
+    "node": "v24.21.0",
+    "mongodb": "local (127.0.0.1) en el mismo equipo",
+    "procesos": "backend en un proceso hijo; autocannon y los canales SSE en otro proceso del mismo equipo"
+  },
+  "volumen": {
+    "emergencias": 2000,
+    "zonas": 1000,
+    "usuarios": 500
+  },
+  "usuarios_conectados_sse": 500,
+  "carga_concurrente": {
+    "conexiones": 100,
+    "segundos": 20,
+    "solicitudes_totales": 3482,
+    "solicitudes_por_segundo": 174.1,
+    "latencia_ms": {
+      "p50": 501,
+      "p90": 921,
+      "p99": 1421,
+      "maxima": 1734
+    },
+    "errores": 0,
+    "respuestas_no_2xx": 0,
+    "codigos_http": {
+      "200": {
+        "count": 3482
+      }
+    },
+    "tiempos_agotados": 0
+  },
+  "consultas_secuenciales_ms": {
+    "/api/emergencias?pagina=3&limite=10&orden=-fecha_inicio": {
+      "p50": 9,
+      "p95": 950
+    },
+    "/api/emergencias?departamento=Departamento%203&nivel_emergencia=alto": {
+      "p50": 8,
+      "p95": 9
+    },
+    "/api/emergencias?busqueda=sint%C3%A9tica%2015": {
+      "p50": 17,
+      "p95": 22
+    },
+    "/api/tablero/indicadores": {
+      "p50": 3,
+      "p95": 4
+    },
+    "/api/mapa?capas=emergencias,zonas": {
+      "p50": 13,
+      "p95": 20
+    },
+    "/api/alertas": {
+      "p50": 5,
+      "p95": 9
+    },
+    "/api/zonas?pagina=2": {
+      "p50": 6,
+      "p95": 7
+    },
+    "/api/recursos": {
+      "p50": 5,
+      "p95": 8
+    }
+  },
+  "asignaciones_concurrentes_30": {
+    "p50_ms": 944,
+    "p95_ms": 962,
+    "maxima_ms": 964
+  },
+  "eventos_sse_recibidos_tras_asignaciones": 30000,
+  "pdf": {
+    "filas": 3000,
+    "bytes": 241709,
+    "ms": 1106
+  }
+}

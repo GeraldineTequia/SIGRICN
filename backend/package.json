@@ -1,0 +1,65 @@
+{
+  "name": "sgricn-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API REST de SGRICN: Sistema de Gestión de Recursos e Información para Catástrofes Naturales",
+  "main": "dist/backend/src/servidor.js",
+  "scripts": {
+    "dev": "tsx watch src/servidor.ts",
+    "compilar": "tsc -p tsconfig.json",
+    "tipos": "tsc -p tsconfig.json --noEmit",
+    "inicio": "node dist/backend/src/servidor.js",
+    "lint": "eslint src pruebas scripts",
+    "formato": "prettier --write \"src/**/*.ts\" \"pruebas/**/*.ts\" \"scripts/**/*.ts\"",
+    "pruebas": "vitest run",
+    "inspeccionar-base": "tsx scripts/inspeccionar_base.ts",
+    "promover-administrador": "tsx scripts/promover_administrador.ts",
+    "crear-indices": "tsx scripts/crear_indices.ts",
+    "importar-emergencias": "tsx scripts/importar_emergencias.ts",
+    "respaldar": "tsx scripts/respaldar_base.ts",
+    "restaurar": "tsx scripts/restaurar_base.ts",
+    "prueba-carga": "tsx scripts/prueba_carga.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "connect-mongo": "^5.1.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^4.22.3",
+    "express-rate-limit": "^8.7.0",
+    "express-session": "^1.19.0",
+    "helmet": "^8.3.0",
+    "mongoose": "^8.24.4",
+    "multer": "^2.4.0",
+    "nodemailer": "^10.0.13",
+    "pdfkit": "^0.20.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/autocannon": "^7.12.7",
+    "@types/bcrypt": "^6.0.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
+    "@types/express-session": "^1.19.0",
+    "@types/multer": "^2.3.0",
+    "@types/node": "^26.6.4",
+    "@types/nodemailer": "^8.0.2",
+    "@types/pdfkit": "^0.17.6",
+    "@types/supertest": "^7.2.1",
+    "autocannon": "^2.0.1",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.9",
+    "supertest": "^7.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0",
+    "vitest": "^5.0.3"
+  },
+  "allowScripts": {
+    "bcrypt@6.0.0": true,
+    "esbuild@0.28.2": true
+  }
+}

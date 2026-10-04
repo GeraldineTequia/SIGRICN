@@ -1,0 +1,52 @@
+export type Tono = 'primario' | 'advertencia' | 'peligro' | 'neutro';
+
+const TONOS: Record<string, Tono> = {
+  critico: 'peligro',
+  critica: 'peligro',
+  agotado: 'peligro',
+  rechazada: 'peligro',
+  descartado: 'peligro',
+  error: 'peligro',
+  alto: 'advertencia',
+  alta: 'advertencia',
+  medio: 'neutro',
+  media: 'neutro',
+  bajo: 'neutro',
+  baja: 'neutro',
+  pendiente: 'advertencia',
+  sin_atender: 'advertencia',
+  insuficiente: 'advertencia',
+  en_verificacion: 'advertencia',
+  en_revision: 'advertencia',
+  registrada: 'advertencia',
+  entregada_parcialmente: 'advertencia',
+  atendida_parcialmente: 'advertencia',
+  en_proceso: 'advertencia',
+  vigente: 'advertencia',
+  activa: 'primario',
+  en_atencion: 'primario',
+  controlada: 'primario',
+  disponible: 'primario',
+  confirmada: 'primario',
+  confirmado: 'primario',
+  atendida: 'primario',
+  atendida_completamente: 'primario',
+  entregada: 'primario',
+  verificado: 'primario',
+  asignada: 'primario',
+  asignado: 'primario',
+  activo: 'primario',
+  ejecutado: 'primario',
+  finalizada: 'neutro',
+  cerrada: 'neutro',
+  anulada: 'neutro',
+  anulado: 'neutro',
+  inactivo: 'neutro',
+  no_disponible: 'neutro',
+  sin_ubicacion: 'advertencia',
+};
+
+/** Tono visual de un estado o nivel. Siempre se acompaña de texto e icono (no sólo color). */
+export function tono_de(valor: unknown): Tono {
+  return TONOS[String(valor ?? '')] ?? 'neutro';
+}

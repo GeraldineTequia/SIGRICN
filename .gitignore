@@ -1,0 +1,24 @@
+# Dependencias y compilados
+node_modules/
+dist/
+coverage/
+
+# Secretos: nunca se suben al repositorio
+.env
+.env.*
+!.env.example
+
+# Datos generados en ejecución (pueden contener datos personales)
+backend/almacenamiento/
+backend/respaldos/
+
+# Herramientas y sistema
+.claude/
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Proyecto anterior (TypeScript con datos semilla y contraseñas predeterminadas): no forma parte de la entrega
+SGRICN/

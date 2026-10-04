@@ -1,0 +1,95 @@
+/*
+ * Tokens de diseño de SGRICN.
+ * Paleta obligatoria: #595959 (texto), #F2F2F2 (fondo), #5CB3C5 (identidad), #F2B705 (advertencia),
+ * #DA0325 (crítico). Los derivados (intensos, suaves, textos sobre fondos suaves) se calcularon para
+ * cumplir el contraste mínimo WCAG; ver docs/arquitectura.md, sección "Contraste".
+ *
+ * Contrastes MEDIDOS con scripts/verificar_contraste.mjs, sobre su fondo real
+ * (las transparencias se componen sobre el fondo antes de medir):
+ *   --color_texto (#595959) sobre #FFFFFF ............ 7.00:1  sobre #F2F2F2 ........ 6.26:1
+ *   #FFFFFF sobre --color_primario_intenso (#287687) .. 5.21:1 (botones principales)
+ *   --color_primario_texto (#1F5F6D) sobre primario_suave compuesto ................ 6.42:1
+ *   --color_advertencia_texto (#6B4E00) sobre advertencia_suave compuesto ........... 6.99:1
+ *   --color_peligro_texto (#A8001B) sobre peligro_suave compuesto .................. 6.56:1
+ *   #FFFFFF sobre --color_peligro (#DA0325) .......... 5.22:1  (botón destructivo)
+ *   #2E2A1E sobre --color_advertencia (#F2B705) ........ 7.88:1 (texto oscuro sobre amarillo)
+ *   --color_primario (#5CB3C5) sobre --color_lateral (#22313A) ...................... 5.55:1
+ *   El celeste #5CB3C5 sobre blanco sólo alcanza 2.4:1: se usa en bordes, iconos acompañados de texto
+ *   y superficies oscuras, nunca como color de texto sobre blanco.
+ */
+:root {
+  --color_texto: #595959;
+  --color_fondo: #F2F2F2;
+  --color_superficie: #FFFFFF;
+
+  --color_primario: #5CB3C5;
+  --color_primario_intenso: #287687;
+  --color_advertencia: #F2B705;
+  --color_peligro: #DA0325;
+
+  --color_primario_suave: rgba(92, 179, 197, 0.14);
+  --color_advertencia_suave: rgba(242, 183, 5, 0.16);
+  --color_peligro_suave: rgba(218, 3, 37, 0.10);
+
+  --color_borde: rgba(89, 89, 89, 0.20);
+  --color_sombra: rgba(89, 89, 89, 0.12);
+  --color_superficie_translucida: rgba(255, 255, 255, 0.94);
+
+  /* Derivados para jerarquía y contraste */
+  --color_titulo: #2F3437;
+  --color_texto_suave: #6B6B6B;
+  --color_primario_texto: #1F5F6D;
+  --color_primario_hover: #1F6372;
+  --color_advertencia_texto: #6B4E00;
+  --color_sobre_advertencia: #2E2A1E;
+  --color_peligro_texto: #A8001B;
+  --color_peligro_hover: #B5021F;
+  --color_exito_texto: #1F5F6D;
+  --color_superficie_alterna: #F7F8F8;
+  --color_campo: #F5F6F6;
+  --color_foco: #287687;
+
+  --color_lateral: #22313A;
+  --color_lateral_texto: #DCE4E7;
+  --color_lateral_suave: rgba(220, 228, 231, 0.72);
+  --color_lateral_borde: rgba(255, 255, 255, 0.08);
+  --color_lateral_hover: rgba(92, 179, 197, 0.14);
+
+  --radio_pequeno: 8px;
+  --radio: 12px;
+  --radio_grande: 18px;
+  --sombra_tarjeta: 0 1px 2px var(--color_sombra), 0 6px 18px -10px var(--color_sombra);
+  --sombra_elevada: 0 2px 4px var(--color_sombra), 0 16px 32px -16px rgba(40, 118, 135, 0.35);
+  --ancho_lateral: 292px;
+  --ancho_lateral_colapsado: 76px;
+  --alto_superior: 76px;
+  --fuente: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --transicion: 180ms cubic-bezier(0.2, 0.7, 0.3, 1);
+
+  color-scheme: light;
+}
+
+/* Modo oscuro: conserva la identidad y recalcula fondos para mantener el contraste. */
+:root[data-tema='oscuro'] {
+  --color_texto: #D9DDDF;
+  --color_fondo: #151B1F;
+  --color_superficie: #1E262B;
+  --color_titulo: #F1F3F4;
+  --color_texto_suave: #A9B1B5;
+  --color_borde: rgba(217, 221, 223, 0.16);
+  --color_sombra: rgba(0, 0, 0, 0.4);
+  --color_superficie_translucida: rgba(30, 38, 43, 0.94);
+  --color_superficie_alterna: #232C32;
+  --color_campo: #252F35;
+  --color_primario_suave: rgba(92, 179, 197, 0.16);
+  --color_advertencia_suave: rgba(242, 183, 5, 0.14);
+  --color_peligro_suave: rgba(218, 3, 37, 0.18);
+  /* Textos sobre fondos suaves oscuros (contraste ≥ 4.5:1 sobre #1E262B compuesto) */
+  --color_primario_texto: #8FD3E0;
+  --color_advertencia_texto: #F5C842;
+  --color_peligro_texto: #FF8A9B;
+  --color_exito_texto: #8FD3E0;
+  --color_foco: #5CB3C5;
+  --color_lateral: #10161A;
+  color-scheme: dark;
+}
