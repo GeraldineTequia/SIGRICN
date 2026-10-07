@@ -189,8 +189,8 @@ sequenceDiagram
   D-->>M: usuario vigente
   M->>S: actualizar(id, cuerpo)
   S->>D: actualizar_si()
-  D-->>S: documento
-  S-->>N: 200 + registro
+  D-->>S: retornar exito
+  S-->>N: emergencia actualizada
 ```
 
 ## Patrones de diseño
