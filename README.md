@@ -110,55 +110,6 @@ El sistema está construido con una **arquitectura por capas**, orientada a gara
 | Dominio | Contiene las reglas de negocio y validaciones (por ejemplo, magnitudes, grupos de edad y cálculo de saldos). |
 | Infraestructura | Implementación técnica: acceso a datos con Mongoose/MongoDB, cifrado, hashing de contraseñas y gestión de sesiones. |
 
-```mermaid
-flowchart TB
-    U[Usuario] --> P
-    subgraph P[Capa de Presentación]
-        FE[Frontend React + Vite] --> API[Rutas y controladores Express]
-    end
-    subgraph A[Capa de Aplicación]
-        SV[Servicios - Service Layer]
-    end
-    subgraph D[Capa de Dominio]
-        ST[Estrategias por tipo de emergencia]
-        SE[Estados de la emergencia]
-    end
-    subgraph I[Capa de Infraestructura]
-        M[Modelos Mongoose]
-        SEG[bcrypt, sesiones, correo, PDF]
-    end
-    API --> SV
-    SV --> ST
-    SV --> SE
-    SV --> M
-    SV --> SEG
-    M --> DB[(MongoDB)]
-```
-## Diagrama de Secuencias
-```mermaid
-sequenceDiagram
-  participant N as Navegador (React)
-  participant M as Express (middlewares)
-  participant S as Servicios (casos de uso)
-  participant D as MongoDB
-
-  Note over N,D: 1 · Inicio de sesión
-  N->>M: POST /auth/inicio-sesion
-  M->>S: iniciar_sesion()
-  S->>D: buscar usuario
-  D-->>S: hash y rol
-  M-->>N: cookie sgricn.sid + token CSRF
-
-  Note over N,D: 2 · Operación protegida: PATCH de una emergencia
-  N->>M: PATCH /emergencias/:id
-  M->>D: releer usuario (rol vigente)
-  D-->>M: usuario vigente
-  M->>S: actualizar(id, cuerpo)
-  S->>D: actualizar_si()
-  D-->>S: documento
-  S-->>N: 200 + registro
-```
-
 ## Diagrama de Arquitectura
 ```mermaid
 flowchart TB
@@ -215,6 +166,31 @@ flowchart TB
     classDef base fill:#ffffff,stroke:#333,stroke-width:1px,color:#111
     class UI,COMP,SAPI,RUTAS,MID,CTRL,SAPP,CU,REG,EST,ESTA,CONT,ENT,SEG,NOT,REPO,MAP nodo
     class DB base
+```
+
+## Diagrama de Secuencias
+```mermaid
+sequenceDiagram
+  participant N as Navegador (React)
+  participant M as Express (middlewares)
+  participant S as Servicios (casos de uso)
+  participant D as MongoDB
+
+  Note over N,D: 1 · Inicio de sesión
+  N->>M: POST /auth/inicio-sesion
+  M->>S: iniciar_sesion()
+  S->>D: buscar usuario
+  D-->>S: hash y rol
+  M-->>N: cookie sgricn.sid + token CSRF
+
+  Note over N,D: 2 · Operación protegida: PATCH de una emergencia
+  N->>M: PATCH /emergencias/:id
+  M->>D: releer usuario (rol vigente)
+  D-->>M: usuario vigente
+  M->>S: actualizar(id, cuerpo)
+  S->>D: actualizar_si()
+  D-->>S: documento
+  S-->>N: 200 + registro
 ```
 
 ## Patrones de diseño
